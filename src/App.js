@@ -1,50 +1,38 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
-import { Greeting } from './Greeting'
-import { PeopleList } from './PeopleList'
-import { CounterButton } from './CounterButton'
-import { CongratulationsMessage } from './CongratulationsMessage'
+import React from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import {
+  HomePage,
+  CounterButtonPage,
+  PeopleListPage,
+  NotFoundPage,
+  ProtectedPage
+} from './pages/index' 
 import './App.css';
 
-const people = [
-  {
-    name: 'John',
-    age: 40,
-    hairColor: 'brown'
-  },
-  {
-    name: 'Helga',
-    age: 45,
-    hairColor: 'red'
-  },
-  {
-    name: 'Dwayne',
-    age: 55,
-    hairColor: 'blonde'
-  }
-]
-
 function App() {
-  const [numberOfClicks, setNumberOfClicks] = useState(0);
-  const [hideMessage, sethideMessage] = useState(false);
-
-  const increment = () => setNumberOfClicks(numberOfClicks + 1)
-  
   return (
     <div className="App">
-      <header className="App-header">
-        <Greeting name="Pablo" />
-        {
-          hideMessage
-            ? null
-            : <CongratulationsMessage
-              numberOfClicks={numberOfClicks}
-              threshold={10}
-              onHide={() => sethideMessage(true)}
-            />
-        }
-        <CounterButton onIncrement={increment} numberOfClicks={numberOfClicks}/>  
-      </header>
+      <Router>
+        <Link to="/counter">Go to counter page!</Link>
+        <Link to="/people-list">Go to people list page!</Link>
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+          <Route path="/counter">
+            <CounterButtonPage />
+          </Route>
+          <Route path="/people-list">
+            <PeopleListPage />
+          </Route>
+          <Route path="/protected" >
+            <ProtectedPage />
+          </Route>
+          <Route>
+            <NotFoundPage />
+          </Route>
+        </Switch> 
+      </Router>
     </div>
   );
 }
