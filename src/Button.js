@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledButton = styled.button`
-  background-color: transparent;
+  background-color: ${props => props.buttonColor || 'transparent'};
   border: 4px solid white;
   border-radius: 4px;
   color: white;
@@ -15,9 +15,14 @@ const StyledButton = styled.button`
 
 `
 
-
 export const Button = ({ children, buttonColor, ...props }) => {
   return (
     <StyledButton buttonColor={buttonColor} {...props}>{children}</StyledButton>
+  )
+}
+
+export const DarkButton = ({ children, ...props }) => {
+  return (
+    <Button buttonColor='red' {...props}>{children}</Button>
   )
 }

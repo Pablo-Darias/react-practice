@@ -6,9 +6,7 @@ import { CongratulationsMessage } from '../CongratulationsMessage'
 import { DisplayIf } from '../DisplayIf'
 
 export const CounterButtonPage = () => {
-  const location = useLocation()
-  const startingValue = parse(location.search).startingValue || 0;
-  const [numberOfClicks, setNumberOfClicks] = useState(Number(startingValue));
+  const [numberOfClicks, setNumberOfClicks] = useState(0);
   const [hideMessage, sethideMessage] = useState(false);
 
   const increment = () => setNumberOfClicks(numberOfClicks + 1)
