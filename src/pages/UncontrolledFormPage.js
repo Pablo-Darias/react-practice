@@ -1,4 +1,6 @@
 import React from 'react'
+import { Button } from '../Button'
+
 
 export const UncontrolledFormPage = () => {
   const nameInput = React.createRef();
@@ -29,14 +31,14 @@ export const UncontrolledFormPage = () => {
           placeholder="Favorite Color"
         />
       </div>
-      <button onClick={e => {
+      <Button onClick={e => {
         alert(`
           Your name is ${nameInput.current.value},
           Your email is ${emailInput.current.value},
           Your favorite color is ${favoriteColorInput.current.value},
         `);
         e.preventDefault();
-      }}>Submit</button>
+      }}>Submit</Button>
     </form>
   )
 }
